@@ -3,3 +3,15 @@
 #
 # handlers file
 #
+
+- name: start diamond server
+  service: name={{ diamond_server_service }} state=started
+  sudo: yes
+
+- name: stop diamond server
+  service: name={{ diamond_server_service }} state=stopped
+  sudo: yes
+
+- name: restart diamond server
+  service: name={{ diamond_server_service }} state=restarted
+  sudo: yes
