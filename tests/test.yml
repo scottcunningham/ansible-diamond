@@ -1,5 +1,5 @@
 ---
-# file: primogen/tests/test.yml
+# file: diamond/tests/test.yml
 
 - name: tests play
   hosts: all
