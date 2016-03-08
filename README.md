@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-New%20BSD-blue.svg?style=flat)](https://raw.githubusercontent.com/saucelabs-ansible/diamond/master/LICENSE)
 [![Build Status](https://travis-ci.org/saucelabs-ansible/diamond.svg?branch=master)](https://travis-ci.org/saucelabs-ansible/diamond)
 
-[![Platform](http://img.shields.io/badge/platform-debian-a80030.svg?style=flat)](#)
+[![Platform](http://img.shields.io/badge/platform-ubuntu-dd4814.svg?style=flat)](#)
 
 [![Project Stats](https://www.openhub.net/p/saucelabs-ansible-diamond/widgets/project_thin_badge.gif)](https://www.openhub.net/p/saucelabs-ansible-diamond/)
 
