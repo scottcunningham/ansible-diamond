@@ -5,16 +5,17 @@
 #
 
 - name: installation | is python-stdeb package installed?
-  shell: 'dpkg --get-selections | grep python-stdeb'
+  shell: dpkg-query -W -f='${Status}\n' {{ item }} | awk '{ print $1 }'
   register: test
   changed_when: no
-  failed_when: "test.rc != 0"
+  failed_when: test.stdout.find('install') == -1
+  with_items: "{{ diamond_dependencies }}"
 
 - name: installation | is diamond package installed?
-  shell: 'dpkg --get-selections | grep diamond'
+  shell: dpkg-query -W -f='${Status}\n' python-diamond | awk '{ print $1 }'
   register: test
   changed_when: no
-  failed_when: "test.rc != 0"
+  failed_when: test.stdout.find('install') == -1
 
 - name: installation | diamond upstart file is present?
   shell: 'test -e /etc/init/diamond.conf'
