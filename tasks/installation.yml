@@ -4,18 +4,18 @@
 # installation tasks.
 #
 
+- name: installation | ensure diamond installation dependencies are present
+  apt:
+    name="{{ item }}"
+    state=present
+  with_items: "{{ diamond_dependencies }}"
+
 - name: installation | is diamond package installed?
-  shell: 'dpkg --get-selections | grep diamond'
+  shell: dpkg-query -W -f='${Status}\n' python-diamond | awk '{ print $1}'
   changed_when: no
   failed_when: no
   register: diamond_task_is_installed
 
-- name: installation | ensure diamond installation dependencies are present
-  apt:
-    name=python-stdeb
-    state=present
-  when: diamond_task_is_installed.rc != 0
-
 - name: installation | ensure diamond is installed
-  command: pypi-install diamond
-  when: diamond_task_is_installed.rc != 0
+  shell: pypi-install diamond
+  when: diamond_task_is_installed.stdout.find('install') == -1

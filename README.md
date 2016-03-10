@@ -37,6 +37,7 @@ Ansible role to setup [diamond](https://github.com/python-diamond/Diamond).
 - **diamond_default_enabled**: flag to indicate if diamond should be enabled.
 - **diamond_default_pid**: path to the file that will store the daemon pid.
 - **diamond_default_user**: run the daemon under this user.
+- **diamond_dependencies**: package dependencies necessary to run or build diamond.
 - **diamond_version**: the version to be installed.
 - **debug**: flag to run debug tasks (default: false).
 
