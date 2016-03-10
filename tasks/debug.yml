@@ -10,11 +10,18 @@
   with_items:
     - ansible_distribution
     - ansible_distribution_version
+    - diamond_conf_collectors
     - diamond_conf_collectors_default
     - diamond_conf_handlers
     - diamond_conf_handlers_default
-    - diamond_conf_logging
+    - diamond_conf_handlers_main
+    - diamond_conf_logging_main
+    - diamond_conf_logging_loggers
+    - diamond_conf_logging_handlers
+    - diamond_conf_logging_formatters
+    - diamond_conf_server
     - diamond_default_enabled
     - diamond_default_pid
     - diamond_default_user
+    - diamond_dependencies
     - diamond_version
