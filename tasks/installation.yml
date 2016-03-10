@@ -1,0 +1,21 @@
+---
+# file: tasks/installation.yml
+#
+# installation tasks.
+#
+
+- name: installation | is diamond package installed?
+  shell: 'dpkg --get-selections | grep diamond'
+  changed_when: no
+  failed_when: no
+  register: diamond_task_is_installed
+
+- name: installation | ensure diamond installation dependencies are present
+  apt:
+    name=python-stdeb
+    state=present
+  when: diamond_task_is_installed.rc != 0
+
+- name: installation | ensure diamond is installed
+  command: pypi-install diamond
+  when: diamond_task_is_installed.rc != 0

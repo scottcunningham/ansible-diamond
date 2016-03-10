@@ -3,3 +3,21 @@
 #
 # handlers file
 #
+
+- name: start diamond
+  service:
+    name=diamond
+    state=started
+  sudo: yes
+
+- name: stop diamond
+  service:
+    name=diamond
+    state=stopped
+  sudo: yes
+
+- name: restart diamond
+  service:
+    name=diamond
+    state=restarted
+  sudo: yes

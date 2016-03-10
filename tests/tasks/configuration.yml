@@ -1,0 +1,34 @@
+---
+# file: tests/tasks/configuration.yml
+#
+# test configuration tasks.
+#
+
+- name: configuration | diamond defaults file is present?
+  shell: 'test -e /etc/default/diamond'
+  changed_when: no
+
+- name: configuration | diamond.conf file is present?
+  shell: 'test -e /etc/diamond/diamond.conf'
+  changed_when: no
+
+- name: configuration | diamond.conf has expected default sections?
+  shell: "grep '{{ item }}' /etc/diamond/diamond.conf"
+  with_items:
+    - '\[server\]'
+    - '\[\[default\]\]'
+    - '\[collectors\]'
+    - '\[\[CPUCollector\]\]'
+    - '\[\[DiskSpaceCollector\]\]'
+    - '\[\[DiskUsageCollector\]\]'
+    - '\[\[LoadAverageCollector\]\]'
+    - '\[\[MemoryCollector\]\]'
+    - '\[\[VMStatCollector\]\]'
+    - '\[handlers\]'
+    - '\[\[ArchiveHandler\]\]'
+    - '\[loggers\]'
+    - '\[formatters\]'
+    - '\[logger_root\]'
+    - '\[handler_rotated_file\]'
+    - '\[formatter_default\]'
+  changed_when: no

@@ -4,8 +4,18 @@
 # Test tasks to verify role execution.
 #
 
-- debug:
-    msg="You need to define tests here!"
-  tags:
-    - debug
-    - test
+- include: installation.yml
+  tags: installation
+
+- include: configuration.yml
+  tags: configuration
+
+- name: ensure handlers are flushed
+  meta: flush_handlers
+  changed_when: no
+
+- name: ensure diamond process is running
+  command: initctl status diamond
+  register: test
+  changed_when: no
+  failed_when: test.stdout.find('diamond start/running') == -1

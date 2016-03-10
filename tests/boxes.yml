@@ -160,7 +160,7 @@ vagrant:
         cpus: 1
 
   trusty64.vagrant.dev:
-    enabled: false
+    enabled: true
     box: ubuntu/trusty64
     network:
       name: private_network
