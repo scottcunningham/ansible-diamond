@@ -18,4 +18,5 @@
 
 - name: installation | ensure diamond is installed
   shell: pypi-install diamond
-  when: diamond_task_is_installed.stdout.find('install') == -1
+  when: diamond_task_is_installed is defined and
+        diamond_task_is_installed.stdout.find('install') == -1
