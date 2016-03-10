@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+ENABLE_DIAMOND="{% if diamond_default_enabled %}yes{% else %}no{% endif %}"
+DIAMOND_PID="{{ diamond_default_pid }}"
+DIAMOND_USER="{{ diamond_default_user }}"

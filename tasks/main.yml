@@ -4,6 +4,32 @@
 # tasks file
 #
 
-- debug: >
-    msg="invoked"
+- include: debug.yml
+  when: debug | default(false)
+  tags: debug
 
+- include: validation.yml
+  tags: validation
+
+- include: installation.yml
+  tags: installation
+  sudo: yes
+
+- include: configuration.yml
+  tags: configuration
+  sudo: yes
+
+- name: ensure diamond daemon is running
+  service:
+    name=diamond
+    state=started
+  sudo: yes
+  when: diamond_default_enabled
+  tags: init
+
+- name: ensure diamond starts on boot
+  service:
+    name=diamond
+    enabled="{{ diamond_default_enabled }}"
+  sudo: yes
+  tags: init

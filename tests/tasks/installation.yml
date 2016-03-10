@@ -1,0 +1,23 @@
+---
+# file: tests/tasks/installation.yml
+#
+# test installation tasks.
+#
+
+- name: installation | is python-stdeb package installed?
+  shell: 'dpkg --get-selections | grep python-stdeb'
+  register: test
+  changed_when: no
+  failed_when: "test.rc != 0"
+
+- name: installation | is diamond package installed?
+  shell: 'dpkg --get-selections | grep diamond'
+  register: test
+  changed_when: no
+  failed_when: "test.rc != 0"
+
+- name: installation | diamond upstart file is present?
+  shell: 'test -e /etc/init/diamond.conf'
+  register: test
+  changed_when: no
+  failed_when: "test.rc != 0"

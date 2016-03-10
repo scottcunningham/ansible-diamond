@@ -1,0 +1,107 @@
+# {{ ansible_managed }}
+
+################################################################################
+# Diamond Configuration File
+################################################################################
+
+
+################################################################################
+### Options for the server
+[server]
+
+{% for variable, value in diamond_conf_server.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{% endfor %}
+
+
+################################################################################
+### Options for handlers
+[handlers]
+
+{% for variable, value in diamond_conf_handlers_main.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{% endfor %}
+
+
+### Defaults options for all Handlers
+[[default]]
+
+{% for variable, value in diamond_conf_handlers_default.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{% endfor %}
+
+
+{% for handler, sectionDict in diamond_conf_handlers.iteritems() | sort %}
+###### Options for {{ handler }}
+[[{{ handler }}]]
+
+{%   for variable, value in sectionDict.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{%   endfor %}
+
+{% endfor %}
+
+
+################################################################################
+### Options for collectors
+[collectors]
+
+[[default]]
+
+{% for variable, value in diamond_conf_collectors_default.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{% endfor %}
+
+{% for collector, sectionDict in diamond_conf_collectors.iteritems() | sort %}
+###### Options for {{ collector }}
+[[{{ collector }}]]
+{%   for variable, value in sectionDict.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{%   endfor %}
+
+{% endfor %}
+
+
+################################################################################
+### Options for logging
+# for more information on file format syntax:
+# http://docs.python.org/library/logging.config.html#configuration-file-format
+[loggers]
+
+{% for variable, value in diamond_conf_logging_main['loggers'].iteritems() %}
+{{ variable }} = {{ value }}
+{% endfor %}
+
+
+[formatters]
+
+{% for variable, value in diamond_conf_logging_main['formatters'].iteritems() %}
+{{ variable }} = {{ value }}
+{% endfor %}
+
+
+{% for name, sectionDict in diamond_conf_logging_loggers.iteritems() | sort %}
+[logger_{{ name }}]
+
+{%   for variable, value in sectionDict.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{%   endfor %}
+{% endfor %}
+
+
+{% for name, sectionDict in diamond_conf_logging_handlers.iteritems() | sort %}
+[handler_{{ name }}]
+
+{%   for variable, value in sectionDict.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{%   endfor %}
+{% endfor %}
+
+
+{% for name, sectionDict in diamond_conf_logging_formatters.iteritems() | sort %}
+[formatter_{{ name }}]
+
+{%   for variable, value in sectionDict.iteritems() | sort %}
+{{ variable }} = {{ value }}
+{%   endfor %}
+{% endfor %}

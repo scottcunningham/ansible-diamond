@@ -1,0 +1,26 @@
+---
+# file: tasks/configuration.yml
+#
+# configuration tasks.
+#
+
+- name: configuration | ensure integrity of diamond defaults
+  template:
+    src=etc/default/diamond.j2
+    dest=/etc/default/diamond
+    owner=root group=root mode=0644
+  notify: restart diamond
+
+- name: configuration | ensure integrity of diamond upstart configuration
+  template:
+    src=etc/init/diamond.conf.j2
+    dest=/etc/init/diamond.conf
+    owner=root group=root mode=0644
+  notify: restart diamond
+
+- name: configuration | ensure integrity of diamond configuration
+  template:
+    src=etc/diamond/diamond.conf.j2
+    dest=/etc/diamond/diamond.conf
+    owner=root group=root mode=0644
+  notify: restart diamond

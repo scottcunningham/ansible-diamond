@@ -3,3 +3,70 @@
 #
 # defaults file
 #
+
+diamond_default_enabled: yes
+diamond_default_pid: /var/run/diamond.pid
+diamond_default_user: diamond
+
+diamond_version: 4.0.195
+
+
+diamond_conf_server:
+  handlers: diamond.handler.archive.ArchiveHandler
+  user: ''
+  group: ''
+  pid_file: /var/run/diamond.pid
+  collectors_path: /usr/share/diamond/collectors/
+  collectors_config_path: /etc/diamond/collectors/
+  handlers_config_path: /etc/diamond/handlers/
+  handlers_path: /usr/share/diamond/handlers/
+
+diamond_conf_handlers_main:
+  keys: rotated_file
+
+diamond_conf_handlers_default: {}
+
+diamond_conf_handlers:
+  ArchiveHandler:
+    log_file: /var/log/diamond/archive.log
+    days: 7
+
+diamond_conf_collectors_default: {}
+
+diamond_conf_collectors:
+  CPUCollector:
+    enabled: 'True'
+  DiskSpaceCollector:
+    enabled: 'True'
+  DiskUsageCollector:
+    enabled: 'True'
+  LoadAverageCollector:
+    enabled: 'True'
+  MemoryCollector:
+    enabled: 'True'
+  VMStatCollector:
+    enabled: 'True'
+
+diamond_conf_logging_main:
+  loggers:
+    keys: root
+  formatters:
+    keys: default
+
+diamond_conf_logging_loggers:
+  root:
+    level: INFO
+    handlers: rotated_file
+    propagate: 1
+
+diamond_conf_logging_handlers:
+  rotated_file:
+    class: handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: default
+    args: "('/var/log/diamond/diamond.log', 'midnight', 1, 7)"
+
+diamond_conf_logging_formatters:
+  default:
+    format: "[%(asctime)s] [%(threadName)s] %(message)s"
+    datefmt: ''
