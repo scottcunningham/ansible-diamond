@@ -14,7 +14,7 @@ Ansible role to setup [diamond](https://github.com/python-diamond/Diamond).
 
 | Family | Distribution | Version | Test Status |
 |:-:|:-:|:-:|:-:|
-| Debian | Ubuntu  | Trusty  | [![x86_64](http://img.shields.io/badge/x86_64-n/a-cccccc.svg?style=flat)](#) |
+| Debian | Ubuntu  | Trusty  | [![x86_64](http://img.shields.io/badge/x86_64-passed-006400.svg?style=flat)](#) |
 
 
 ## Requirements
