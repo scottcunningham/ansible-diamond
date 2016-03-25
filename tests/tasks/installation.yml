@@ -12,10 +12,10 @@
   with_items: "{{ diamond_dependencies }}"
 
 - name: installation | is diamond package installed?
-  shell: dpkg-query -W -f='${Status}\n' python-diamond | awk '{ print $1 }'
+  shell: dpkg-query -W -f='${Status}\n' python-diamond
   register: test
   changed_when: no
-  failed_when: test.stdout.find('install') == -1
+  failed_when: test.stdout.find('install ok installed') == -1
 
 - name: installation | diamond upstart file is present?
   shell: 'test -e /etc/init/diamond.conf'
