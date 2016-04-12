@@ -8,7 +8,7 @@
   shell: dpkg-query -W -f='${Status}\n' {{ item }} | awk '{ print $1 }'
   register: test
   changed_when: no
-  failed_when: test.stdout.find('install') == -1
+  failed_when: test.stdout.find('install ok installed') == -1
   with_items: "{{ diamond_dependencies }}"
 
 - name: installation | is diamond package installed?
