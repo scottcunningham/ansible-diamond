@@ -10,13 +10,6 @@
     state=present
   with_items: "{{ diamond_dependencies }}"
 
-- name: installation | is diamond package installed?
-  shell: dpkg-query -W -f='${Status}\n' python-diamond
-  changed_when: no
-  failed_when: no
-  register: diamond_task_is_installed
-
-- name: installation | ensure diamond is installed
-  shell: pypi-install diamond
-  when: diamond_task_is_installed is defined and
-        diamond_task_is_installed.stdout.find('install ok installed') == -1
+- name: install diamond
+  pip:
+    name: diamond

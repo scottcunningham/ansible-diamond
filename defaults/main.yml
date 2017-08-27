@@ -5,15 +5,11 @@
 #
 
 diamond_dependencies:
-  - python-configobj
-  - python-stdeb
+  - python-dev
 
 diamond_default_enabled: yes
 diamond_default_pid: /var/run/diamond.pid
 diamond_default_user: diamond
-
-diamond_version: 4.0.195
-
 
 diamond_conf_server:
   handlers: diamond.handler.archive.ArchiveHandler
